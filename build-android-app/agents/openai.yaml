@@ -1,0 +1,4 @@
+interface:
+  display_name: "Build Android App"
+  short_description: "Build and debug Android"
+  default_prompt: "Build and run the current Android app on an emulator, then inspect its UI."

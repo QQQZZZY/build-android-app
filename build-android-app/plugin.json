@@ -1,0 +1,39 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "build-android-app",
+  "version": "0.1.1",
+  "repository": "https://github.com/QQQZZZY/build-android-app",
+  "description": "Build, run, test, and profile Android apps with Gradle, Google Android Skills, OpenAI testing skills, and serve-avd emulator controls.",
+  "author": {
+    "name": "Build Android App contributors"
+  },
+  "license": "Apache-2.0 AND MIT",
+  "keywords": [
+    "android",
+    "gradle",
+    "adb",
+    "emulator",
+    "mcp",
+    "android-skills"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Build Android App",
+        "shortDescription": "Build and debug Android",
+        "longDescription": "Check Android tooling, build with the project's Gradle wrapper, inspect emulator UI with serve-avd and OpenAI Emulator QA, diagnose Logcat output, and gather CPU, frame, startup and memory evidence with OpenAI Android Performance and Google Android Skills.",
+        "developerName": "Build Android App contributors",
+        "category": "Developer Tools",
+        "capabilities": [
+          "Interactive",
+          "Read",
+          "Write"
+        ],
+        "defaultPrompt": [
+          "Build and run the current Android app on an emulator, then inspect its UI."
+        ],
+        "brandColor": "#3DDC84"
+      }
+    }
+  }
+}

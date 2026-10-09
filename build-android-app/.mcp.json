@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "android": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "serve-avd@0.1.3",
+        "mcp"
+      ]
+    }
+  }
+}

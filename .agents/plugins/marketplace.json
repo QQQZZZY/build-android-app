@@ -1,0 +1,20 @@
+{
+  "name": "build-android-app-local",
+  "plugins": [
+    {
+      "name": "build-android-app",
+      "source": {
+        "source": "local",
+        "path": "./build-android-app"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools",
+      "interface": {
+        "displayName": "Build Android App"
+      }
+    }
+  ]
+}
