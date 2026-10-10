@@ -1,0 +1,15 @@
+{
+  "name": "build-android-app",
+  "version": "0.1.1",
+  "private": true,
+  "description": "DeepSeek Harness bundle for the Build Android App plugin: the eight Android skills and the serve-avd device MCP server.",
+  "repository": "https://github.com/QQQZZZY/build-android-app",
+  "license": "Apache-2.0 AND MIT",
+  "type": "module",
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

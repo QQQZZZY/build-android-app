@@ -35,3 +35,17 @@ codex plugin marketplace add .
 3. 新建任务试用：例如「构建当前 Android 应用并在模拟器上运行，检查 UI」。
 
 运行依赖与 Codex 侧相同：Java、Android SDK/ADB、模拟器，以及 Node.js 18.17+。
+
+## DSH 安装
+
+本仓库同时提供 DeepSeek Harness（DSH）组合包适配：根级 [`package.json`](package.json) 声明 DSH 组合包（`dsh.bundle.patch`），[`cordis.patch.yml`](cordis.patch.yml) 把一个隔离的 skill 提供方和 serve-avd MCP 挂进当前 profile。8 个 Skill 与 MCP 命令由 Codex / ZCode / DSH 三方共享，功能一致。
+
+在 DSH 侧边栏 **插件** 页（或 `plugin_manager` 工具，`action: install_bundle`）安装：
+
+1. 添加组合包，目标填本仓库根目录的绝对路径（例如 `/path/to/build-android-app`）；也可用 Git 地址 `github:QQQZZZY/build-android-app`。
+2. 安装会写入当前 profile 的 `dsh.profile.bundles`，配置热重载后即可生效；无需手工编辑 profile 的 `cordis.patch.yml`。
+3. 生效后 8 个 Skill 进入 Skill 目录，MCP 工具以 `mcp__android__<tool>` 出现。试用提示词：「构建当前 Android 应用并在模拟器上运行，检查 UI」。
+
+DSH 适配只新增根级 `package.json` 与 `cordis.patch.yml`，未改动 `plugin.json`、`.codex-plugin/`、`.mcp.json`、`mcp.json`、`agents/`、`skills/`、`.agents/plugins/marketplace.json` 与 `marketplace.json`，Codex 与 ZCode 的插件配置保持不变。Skill 通过独立的 filesystem 提供方挂载（`includeDefaultRoots: false`），不会与 DSH 默认的项目/用户 skill 根重复扫描。
+
+运行依赖与 Codex 侧相同：Java、Android SDK/ADB、模拟器，以及 Node.js 18.17+ 来启动 serve-avd。

@@ -1,0 +1,39 @@
+# DeepSeek Harness (DSH) bundle patch for the Build Android App plugin.
+#
+# A profile composes its tree by applying every bundle patch, in
+# `dsh.profile.bundles` order, over an empty entry list and then the user's own
+# `cordis.patch.yml`. This layer inserts two rows and changes nothing that
+# Codex, ZCode, or the plugin's own files read:
+#
+#   build-android-app-skills  mounts the plugin's eight SKILL.md bundles as an
+#                             isolated filesystem provider, so they join the DSH
+#                             skill catalog without re-scanning the deployment's
+#                             default project/user roots (no duplicate entries).
+#   build-android-app-mcp     connects the same `npx -y serve-avd@0.1.3 mcp`
+#                             stdio server that `.mcp.json` gives Codex and
+#                             ZCode; its tools appear as `mcp__android__<tool>`.
+#
+# `baseUrl` is the Loader's profile-directory anchor, so the bundle locates its
+# own package through the profile's node_modules (path, git, and registry
+# installs all land there under the package name). Resolution is best-effort: a
+# missing package contributes no skill root instead of failing harness boot.
+
+- insert:
+    - id: build-android-app-skills
+      name: '@deepseek-ai/dsh-skill-filesystem'
+      config:
+        providerName: build-android-app
+        includeDefaultRoots: false
+        customSkillDirs: !!js "(() => { try { const { dirname, join } = process.getBuiltinModule('node:path'); const { createRequire } = process.getBuiltinModule('node:module'); const manifest = createRequire(baseUrl).resolve('build-android-app/package.json'); return [join(dirname(manifest), 'build-android-app', 'skills')]; } catch { return []; } })()"
+
+    - id: build-android-app-mcp
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: android
+        transport: stdio
+        command: npx
+        args:
+          - '-y'
+          - 'serve-avd@0.1.3'
+          - 'mcp'
+        failOnStartupError: false
