@@ -1,0 +1,11 @@
+{
+  "name": "build-android-app",
+  "version": "0.1.1",
+  "description": "Build, run, test, and profile Android apps with Gradle, Google Android Skills, OpenAI testing skills, and serve-avd emulator controls.",
+  "author": {
+    "name": "Build Android App contributors"
+  },
+  "license": "Apache-2.0 AND MIT",
+  "skills": "./skills",
+  "mcpServers": "./.mcp.json"
+}

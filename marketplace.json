@@ -1,0 +1,19 @@
+{
+  "name": "build-android-app",
+  "plugins": [
+    {
+      "name": "build-android-app",
+      "source": "./build-android-app",
+      "version": "0.1.1",
+      "description": "Build, run, test, and profile Android apps with Gradle, Google Android Skills, OpenAI testing skills, and serve-avd emulator controls.",
+      "displayName": "Build Android App",
+      "displayName_i18n": {
+        "zh-CN": "安卓应用构建调试"
+      },
+      "description_i18n": {
+        "zh-CN": "使用 Gradle 构建安卓应用，在模拟器安装运行、检查 UI 与 Logcat，并采集性能证据。"
+      },
+      "category": "developer-tools"
+    }
+  ]
+}
